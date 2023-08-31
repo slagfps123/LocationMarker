@@ -7,6 +7,18 @@
         <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
         <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+
+       <script>
+       window.onload = () => {
+        var n = document.querySelector('a-text'); // <-- find first node of that type
+        console.log(n);
+        n.flushToDOM();  // debug aid: this will show the AFrame attribute values
+        console.log(n);  // by default they are not written back to DOM because expensive
+        var distanceMsg = n.getAttribute('distanceMsg'); // <-- returns null, so for show
+        distanceMsg = "so far away"; // just use something else
+        n.setAttribute('value', distanceMsg); // <-- this is how you change the text to display
+        };
+        </script>
     </head>
 
     <body style="margin: 0; overflow: hidden;">
@@ -30,6 +42,12 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.32566833494129; longitude: 123.91614851541819;"
                 ></a-entity>
+                <a-text
+                look-at="[gps-camera]"
+                scale="50 50 50"
+                gps-entity-place="llatitude: 10.32566833494129; longitude: 123.91614851541819;"
+                value= "place1"  // <--- this is how you set up the text to display
+                ></a-text>
         
                 <a-entity
                     look-at="[gps-camera]"
@@ -38,6 +56,12 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.326269973971577; longitude: 123.91598758287729;"
                 ></a-entity>
+                <a-text
+                look-at="[gps-camera]"
+                scale="50 50 50"
+                gps-entity-place="llatitude: 10.326269973971577; longitude: 123.91598758287729;"
+                value= "place2"  // <--- this is how you set up the text to display
+                ></a-text>
 
                 <a-entity
                     look-at="[gps-camera]"
@@ -46,20 +70,33 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.326037762552422; longitude: 123.91541895456614;"
                 ></a-entity>
+                <a-text
+                look-at="[gps-camera]"
+                scale="50 50 50"
+                gps-entity-place="llatitude: 10.326037762552422; longitude: 123.91541895456614;"
+                value= "place3"  // <--- this is how you set up the text to display
+                ></a-text>
 
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
                     gltf-model="#animated-asset"
                     scale="0.005 0.005 0.005"
-                    gps-entity-place=="latitude: 10.325525841318145; longitude: 123.91563353128733;"
+                    gps-entity-place="latitude: 10.325525841318145; longitude: 123.91563353128733;"
                 ></a-entity>
+                <a-text
+                look-at="[gps-camera]"
+                scale="50 50 50"
+                gps-entity-place="llatitude: 10.325525841318145; longitude: 123.91563353128733;"
+                value= "place4"  // <--- this is how you set up the text to display
+                ></a-text>
+            
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
                     gltf-model="#animated-asset"
                     scale="0.005 0.005 0.005"
-                    gps-entity-place=="latitude: 35.647235; longitude: 139.711988;"
+                    gps-entity-place="latitude: 35.647235; longitude: 139.711988;"
                 ></a-entity>
                 <a-entity
                     look-at="[gps-camera]"
