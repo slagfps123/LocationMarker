@@ -9,15 +9,20 @@
         <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
        <script>
-       window.onload = () => {
-        var n = document.querySelector('a-text'); // <-- find first node of that type
-        console.log(n);
-        n.flushToDOM();  // debug aid: this will show the AFrame attribute values
-        console.log(n);  // by default they are not written back to DOM because expensive
-        var distanceMsg = n.getAttribute('distanceMsg'); // <-- returns null, so for show
-        distanceMsg = "so far away"; // just use something else
-        n.setAttribute('value', distanceMsg); // <-- this is how you change the text to display
-        };
+      AFRAME.registerComponent("dist", {
+        init: function() {
+        this.cam = document.querySelector("[camera]")
+        this.phoenix1 = document.querySelector("#phoenix1")
+    },
+        tick: function() {
+        let camPos = this.cam.object3D.position
+        let phoenix1pos = this.phoenix1.object3D.position
+        let distance = camPos.distanceTo(phoenix1pos)
+        if (distance < 5) {
+        // camera closer than 5m, do something
+            document.getElementById("distancetext").innerHTML=distance;
+    }
+  })
         </script>
     </head>
 
@@ -34,20 +39,15 @@
                     src="assets/asset.glb"
                 ></a-asset-item>
             </a-assets>
-
+                <a-text id="distancetext" ></a-text>
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
                     gltf-model="#animated-asset"
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.32566833494129; longitude: 123.91614851541819;"
+                    id="phoenix1"
                 ></a-entity>
-                <a-text
-                look-at="[gps-camera]"
-                scale="50 50 50"
-                gps-entity-place="llatitude: 10.32566833494129; longitude: 123.91614851541819;"
-                value= "place1"  // <--- this is how you set up the text to display
-                ></a-text>
         
                 <a-entity
                     look-at="[gps-camera]"
@@ -55,13 +55,8 @@
                     gltf-model="#animated-asset"
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.326269973971577; longitude: 123.91598758287729;"
+                    hidden
                 ></a-entity>
-                <a-text
-                look-at="[gps-camera]"
-                scale="50 50 50"
-                gps-entity-place="llatitude: 10.326269973971577; longitude: 123.91598758287729;"
-                value= "place2"  // <--- this is how you set up the text to display
-                ></a-text>
 
                 <a-entity
                     look-at="[gps-camera]"
@@ -69,13 +64,8 @@
                     gltf-model="#animated-asset"
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.326037762552422; longitude: 123.91541895456614;"
+                    hidden
                 ></a-entity>
-                <a-text
-                look-at="[gps-camera]"
-                scale="50 50 50"
-                gps-entity-place="llatitude: 10.326037762552422; longitude: 123.91541895456614;"
-                value= "place3"  // <--- this is how you set up the text to display
-                ></a-text>
 
                 <a-entity
                     look-at="[gps-camera]"
@@ -83,13 +73,8 @@
                     gltf-model="#animated-asset"
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.325525841318145; longitude: 123.91563353128733;"
+                    hidden
                 ></a-entity>
-                <a-text
-                look-at="[gps-camera]"
-                scale="50 50 50"
-                gps-entity-place="llatitude: 10.325525841318145; longitude: 123.91563353128733;"
-                value= "place4"  // <--- this is how you set up the text to display
-                ></a-text>
 
                 <a-entity
                     look-at="[gps-camera]"
@@ -98,12 +83,6 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 10.337479248478747; longitude: 123.94210156984629;"
                 ></a-entity>
-                <a-text
-                look-at="[gps-camera]"
-                scale="50 50 50"
-                gps-entity-place="llatitude: 10.337479248478747; longitude: 123.94210156984629;"
-                value= "place4"  // <--- this is how you set up the text to display
-                ></a-text>
             
                 <a-entity
                     look-at="[gps-camera]"
@@ -112,6 +91,7 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 35.647235; longitude: 139.711988;"
                 ></a-entity>
+            
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
@@ -119,6 +99,7 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 43.072786; longitude: 141.349100;"
                 ></a-entity>
+            
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
@@ -126,93 +107,6 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 33.58928994371316; longitude: 130.41731159559293;"
                 ></a-entity>
-            
-            <!--
-
-                <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.325838; longitude: 123.915974;"
-                ></a-entity>
-
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.325780; longitude: 123.916097;"
-                ></a-entity>
-
-
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.325882; longitude: 123.915888;"
-                ></a-entity>
-
-
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.325642; longitude: 123.916375;"
-                ></a-entity>
-
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.337201; longitude: 123.942150;"
-                ></a-entity>
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.337468; longitude: 123.941787;"
-                ></a-entity>
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.337676; longitude: 123.941486;"
-                ></a-entity>
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.337914; longitude: 123.941117;"
-                ></a-entity>
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.338172; longitude: 123.940673;"
-                ></a-entity>
-            <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.338708; longitude: 123.940759;"
-                ></a-entity>
-                        <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.004 0.004 0.004"
-                    gps-entity-place="latitude: 10.339010; longitude: 123.940648;"
-                ></a-entity>
--->
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
     </body>
