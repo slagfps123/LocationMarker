@@ -13,16 +13,17 @@
         init: function() {
         this.cam = document.querySelector("[camera]")
         this.phoenix1 = document.querySelector("#phoenix1")
+        this.text = document.querySelector("a-text")
     },
         tick: function() {
         let camPos = this.cam.object3D.position
         let phoenix1pos = this.phoenix1.object3D.position
         let distance = camPos.distanceTo(phoenix1pos)
-        if (distance < 5) {
+        this.text.setAttribute("value", camPos.distanceTo(phoenix1pos))
+        // if (distance < 5) {
         // camera closer than 5m, do something
-            this.text.setAttribute("value", camPos.distanceTo(phoenix1pos))
-            document.getElementById("distancetext").innerHTML=distance;
-            alert(`The distance is ${distance}`);
+            
+
     }
   }})
         </script>
@@ -41,7 +42,7 @@
                     src="assets/asset.glb"
                 ></a-asset-item>
             </a-assets>
-                <a-text position="0 1 -3" color="black"></a-text>
+                <a-text value="" size="double" color="red"></a-text>
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
