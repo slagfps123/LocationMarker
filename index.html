@@ -21,6 +21,7 @@
         if (distance < 5) {
         // camera closer than 5m, do something
             document.getElementById("distancetext").innerHTML=distance;
+            alert(`The distance is ${distance}`);
     }
   })
         </script>
@@ -48,7 +49,7 @@
                     gps-entity-place="latitude: 10.32566833494129; longitude: 123.91614851541819;"
                     id="phoenix1"
                 ></a-entity>
-        
+        <!--
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
@@ -107,6 +108,7 @@
                     scale="0.005 0.005 0.005"
                     gps-entity-place="latitude: 33.58928994371316; longitude: 130.41731159559293;"
                 ></a-entity>
+            -->
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
     </body>
