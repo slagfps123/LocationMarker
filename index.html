@@ -11,9 +11,13 @@
            
       AFRAME.registerComponent("dist", {
         init: function() {
+        
         this.cam = document.querySelector("[camera]")
         this.phoenix1 = document.querySelector("#phoenix1")
         this.text = document.querySelector("a-text")
+            let camPos = this.cam.object3D.position
+            let distance = camPos.distanceTo(phoenix1pos)
+            console.log("The distance is: " + distance);
     },
         tick: function() {
         let camPos = this.cam.object3D.position
@@ -22,7 +26,7 @@
         this.text.setAttribute("value", camPos.distanceTo(phoenix1pos))
         // if (distance < 5) {
         // camera closer than 5m, do something
-        console.log("The distance is: " + distance);
+        
             
 
     }
