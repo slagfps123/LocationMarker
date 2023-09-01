@@ -20,6 +20,7 @@
         let distance = camPos.distanceTo(phoenix1pos)
         if (distance < 5) {
         // camera closer than 5m, do something
+            this.text.setAttribute("value", camPos.distanceTo(phoenix1pos))
             document.getElementById("distancetext").innerHTML=distance;
             alert(`The distance is ${distance}`);
     }
@@ -40,7 +41,7 @@
                     src="assets/asset.glb"
                 ></a-asset-item>
             </a-assets>
-                <a-text id="distancetext" ></a-text>
+                <a-text position="0 1 -3" color="black"></a-text>
                 <a-entity
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
@@ -109,7 +110,7 @@
                     gps-entity-place="latitude: 33.58928994371316; longitude: 130.41731159559293;"
                 ></a-entity>
             -->
-            <a-camera gps-camera rotation-reader></a-camera>
+            <a-camera gps-camera rotation-reader dist></a-camera>
         </a-scene>
     </body>
 </html>
