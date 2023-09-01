@@ -16,6 +16,7 @@
         this.phoenix1 = document.querySelector("#phoenix1")
         this.text = document.querySelector("a-text")
             let camPos = this.cam.object3D.position
+            let phoenix1pos = this.phoenix1.object3D.position
             let distance = camPos.distanceTo(phoenix1pos)
             console.log("The distance is: " + distance);
     },
