@@ -163,6 +163,8 @@
         </asset>
         <!-- Place your 3D object at a GPS location -->
         <a-entity
+            look-at="[gps-camera]"
+            animation-mixer="loop: repeat"
             gltf-model="#animated-asset"
             scale="0.005 0.005 0.005"
             gps-entity-place="latitude: 10.325525841318145; longitude: 123.91563353128733;"
