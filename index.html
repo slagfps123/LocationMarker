@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,8 +13,12 @@
                 this.cam = document.querySelector("[gps-camera]");
                 this.phoenix1 = document.querySelector("#phoenix1");
                 this.text = document.querySelector("#textz");
+                this.updateDistance();
             },
             tick: function() {
+                this.updateDistance();
+            },
+            updateDistance: function() {
                 let camPos = this.cam.object3D.position;
                 let phoenix1pos = this.phoenix1.object3D.position;
                 let distance = camPos.distanceTo(phoenix1pos);
