@@ -11,7 +11,7 @@
         AFRAME.registerComponent("dist", {
             init: function() {
                 this.cam = document.querySelector("[gps-camera]");
-                this.phoenix1 = document.querySelector("#phoenix1");
+                this.phnx1 = document.querySelector("#phoenix1");
                 this.text = document.querySelector("#textz");
                 this.updateDistance();
             },
@@ -19,8 +19,8 @@
                 this.updateDistance();
             },
             updateDistance: function() {
-                let camPos = this.camera.object3D.getWorldPosition();
-                let phoenix1pos = this.phoenix1.object3D.position;
+                let camPos = this.cam.object3D.getWorldPosition();
+                let phoenix1pos = this.phnx1.object3D.position;
                 let distance = camPos.distanceTo(phoenix1pos);
                 this.text.setAttribute("value", "Distance: " + distance.toFixed(2) + " meters");
             }
