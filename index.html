@@ -1,4 +1,4 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,7 +19,7 @@
                 this.updateDistance();
             },
             updateDistance: function() {
-                let camPos = this.cam.object3D.position;
+                let camPos = this.camera.object3D.getWorldPosition();
                 let phoenix1pos = this.phoenix1.object3D.position;
                 let distance = camPos.distanceTo(phoenix1pos);
                 this.text.setAttribute("value", "Distance: " + distance.toFixed(2) + " meters");
@@ -50,8 +50,8 @@
     </a-scene>
 </body>
 </html>
--->
 
+<!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,3 +123,5 @@
     </a-scene>
 </body>
 </html>
+
+-->
