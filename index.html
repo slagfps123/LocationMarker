@@ -212,20 +212,16 @@
                 this.textz = document.querySelector("#textz");
                 this.camera = document.querySelector("a-camera");
                 this.distanceText = document.querySelector("#distanceText"); // New text entity
-                let cameraPos = this.camera.object3D.getWorldPosition();
-                let textzPos = this.textz.object3D.getWorldPosition();
-                let distance = cameraPos.distanceTo(textzPos);
-                this.distanceText.setAttribute("value", "Distance to Textz: " + distance.toFixed(2) + " meters");
                 this.updateDistance();
             },
             tick: function() {
                 this.updateDistance();
             },
             updateDistance: function() {
-                let cameraPos = this.camera.object3D.getWorldPosition();
-                let textzPos = this.textz.object3D.getWorldPosition();
-                let distance = cameraPos.distanceTo(textzPos);
-                this.distanceText.setAttribute("value", "Distance to Textz: " + distance.toFixed(2) + " meters");
+                let camPos = this.camera.object3D.getWorldPosition();
+                let textzPos = this.textz.object3D.position;
+                let distance = camPos.distanceTo(textzPos);
+                this.distanceText.setAttribute("value", "Textz to Camera Distance: " + distance.toFixed(2) + " meters"); // Update the new text entity
             }
         });
     </script>
@@ -249,6 +245,12 @@
             color="red"
             id="textz"
         ></a-text>
+        <a-text
+            id="distanceText"
+            position="0 1.5 0"
+            scale="15 15 15"
+            color="blue"
+        ></a-text>
         <a-entity
             look-at="[gps-camera]"
             animation-mixer="loop: repeat"
@@ -258,12 +260,6 @@
             id="phoenix1"
         ></a-entity>
         <a-camera gps-camera rotation-reader dist></a-camera>
-        <a-text
-            id="distanceText"
-            position="0 1.5 -2" <!-- Adjust the position to place it in front of the camera -->
-            scale="2 2 2"
-            color="blue"
-        ></a-text>
     </a-scene>
 </body>
 </html>
