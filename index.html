@@ -146,10 +146,7 @@
             init: function() {
                 this.cam = document.querySelector("[gps-camera]");
                 this.phoenix1 = document.querySelector("#phoenix1");
-                this.text = document.createElement("a-text");
-                this.text.setAttribute("color", "red");
-                this.text.setAttribute("position", "0 0.2 -1");
-                this.phoenix1.appendChild(this.text);
+                this.text = document.querySelector("#textz");
             },
             tick: function() {
                 let camPos = this.cam.object3D.getWorldPosition();
@@ -158,6 +155,10 @@
 
                 // Display the distance in the text element
                 this.text.setAttribute("value", "Distance to Phoenix1: " + distanceCameraToPhoenix1.toFixed(2) + " meters");
+
+                // Position the text near Phoenix1
+                this.text.object3D.position.copy(phoenix1pos);
+                this.text.object3D.position.y += 0.2; // Adjust the height of the text
             }
         });
     </script>
@@ -179,9 +180,11 @@
             scale="0.005 0.005 0.005"
             gps-entity-place="latitude: 10.325525841318145; longitude: 123.91563353128733;"
             id="phoenix1"
-            dist
         ></a-entity>
-        <a-camera gps-camera rotation-reader></a-camera>
+        <a-camera gps-camera rotation-reader dist></a-camera>
+
+        <!-- Add the <a-text> for distance display -->
+        <a-text size="double" color="red" id="textz" position="0 0.2 -1"></a-text>
     </a-scene>
 </body>
 </html>
