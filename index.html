@@ -99,15 +99,14 @@
             <!-- Load your 3D model here -->
             <a-asset-item id="your3dModel" src="assets/asset.glb"></a-asset-item>
         </a-assets>
-        
-        <a-entity gps-entity-place="latitude: 10.324887257991819; longitude: 123.9149629790336;">
-            <a-entity
-                look-at="[gps-camera]"
-                gltf-model="#your3dModel"
-                scale="0.005 0.005 0.005"
-            ></a-entity>
+        <a-entity
+            look-at="[gps-camera]"
+            animation-mixer="loop: repeat"
+            gltf-model="#your3dModel"
+            scale="0.005 0.005 0.005"
+            gps-entity-place="latitude: 10.325525841318145; longitude: 123.91563353128733;"
+        >
         </a-entity>
-
         <a-entity
             gps-camera
             rotation-reader
